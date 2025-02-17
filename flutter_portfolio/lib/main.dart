@@ -52,6 +52,7 @@ class MyApplicationsScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.red,borderRadius: BorderRadius.circular(100),
               ),
+              child: ClipOval(child: Image.asset("assets/profilepic1.jpg",fit: BoxFit.cover,)),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
