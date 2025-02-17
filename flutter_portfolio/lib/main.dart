@@ -33,12 +33,13 @@ class MyApplicationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       appBar: AppBar(
         title: const Text(
           "My Applications",
           style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.deepPurple[400],
         elevation: 0,
         centerTitle: true,
       ),
@@ -50,7 +51,7 @@ class MyApplicationsScreen extends StatelessWidget {
               height: size.height * .30,
               width: size.width * .35,
               decoration: BoxDecoration(
-                color: Colors.red,borderRadius: BorderRadius.circular(100),
+                borderRadius: BorderRadius.circular(100),
               ),
               child: ClipOval(child: Image.asset("assets/profilepic1.jpg",fit: BoxFit.cover,)),
             ),
