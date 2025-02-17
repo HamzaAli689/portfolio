@@ -31,6 +31,7 @@ class MyApplicationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -43,7 +44,15 @@ class MyApplicationsScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Container(
+              height: size.height * .30,
+              width: size.width * .35,
+              decoration: BoxDecoration(
+                color: Colors.red,borderRadius: BorderRadius.circular(100),
+              ),
+            ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(
@@ -125,14 +134,14 @@ class GalleryItem extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/playstore-logo.png',
-                              width: 40,
-                              height: 40,
+                              width: 30,
+                              height: 30,
                             ),
                             const SizedBox(width: 20), // Spacing between icons
                             Image.asset(
                               'assets/applestore-logo.png',
-                              width: 40,
-                              height: 40,
+                              width: 30,
+                              height: 30,
                             ),
                           ],
                         ),
