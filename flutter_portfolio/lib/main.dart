@@ -82,7 +82,7 @@ class MyApplicationsScreen extends StatelessWidget {
                     letterSpacing: 1,
                   ),),
                   Text(
-                    "I am a passionate Flutter developer with experience in building cross-platform mobile and web applications. My expertise includes creating interactive user interfaces and working with Firebase for authentication, Firestore, and cloud storage solutions. I have developed a range of applications, from utility tools like a BMI Calculator to entertainment apps like a Xylophone and Quiz app. With a focus on clean, responsive design, I can create custom solutions for both Android and web platforms. Currently, I am deepening my knowledge of Firebase's advanced features and looking to contribute to innovative projects that challenge my skills.",
+                    "I am a passionate Flutter developer with experience in building cross-platform mobile and web applications. My expertise includes creating interactive user interfaces and working with Firebase for authentication, Firestore, and cloud storage solutions. I have developed a range of applications, Chat App using Firebase, from utility tools like a BMI Calculator to entertainment apps like a Xylophone and Quiz app. With a focus on clean, responsive design, I can create custom solutions for both Android and web platforms. Currently, I am deepening my knowledge of Firebase's advanced features and looking to contribute to innovative projects that challenge my skills.",
                     style: TextStyle(fontSize: 16, color: primary),
                   ),
                 ],
