@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,13 +34,13 @@ class MyApplicationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.indigo,
+      backgroundColor: background,
       appBar: AppBar(
         title: const Text(
           "My Portfolio",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.indigo,
+        backgroundColor: primary,
         elevation: 0,
         centerTitle: true,
       ),
@@ -47,6 +48,7 @@ class MyApplicationsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: 30,),
             Container(
               height: size.height * .30,
               width: size.width * .35,
@@ -55,12 +57,35 @@ class MyApplicationsScreen extends StatelessWidget {
               ),
               child: ClipOval(child: Image.asset("assets/profilepic1.jpg",fit: BoxFit.cover,)),
             ),
-            Text("Hamza Ali"),
+            Text("Hamza Ali",style: TextStyle(
+              fontSize: 30,
+              color: secondary,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1,
+            ),),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                "These are the projects I have worked on...",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                "A Passionate Flutter Developer from Pakistan",
+                style: TextStyle(fontSize: 16, color: primary),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("About Me",style: TextStyle(
+                    fontSize: 24,
+                    color: secondary,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                  ),),
+                  Text(
+                    "I am a passionate Flutter developer with experience in building cross-platform mobile and web applications. My expertise includes creating interactive user interfaces and working with Firebase for authentication, Firestore, and cloud storage solutions. I have developed a range of applications, from utility tools like a BMI Calculator to entertainment apps like a Xylophone and Quiz app. With a focus on clean, responsive design, I can create custom solutions for both Android and web platforms. Currently, I am deepening my knowledge of Firebase's advanced features and looking to contribute to innovative projects that challenge my skills.",
+                    style: TextStyle(fontSize: 16, color: primary),
+                  ),
+                ],
               ),
             ),
             Padding(
