@@ -88,6 +88,12 @@ class MyApplicationsScreen extends StatelessWidget {
                 ],
               ),
             ),
+            Text("My Applications",style: TextStyle(
+              fontSize: 30,
+              color: secondary,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1,
+            ),),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: GridView.builder(
