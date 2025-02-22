@@ -73,7 +73,7 @@ class MyApplicationsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text("About Me",style: TextStyle(
                     fontSize: 24,
