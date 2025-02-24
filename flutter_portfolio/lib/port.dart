@@ -102,7 +102,6 @@ class PortfolioScreen extends StatelessWidget {
       ),
     );
   }
-
   
   Widget _navItem(String title) {
     return TextButton(
