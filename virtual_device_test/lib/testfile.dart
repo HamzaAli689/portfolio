@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:virtual_device_test/Screen_One.dart';
 
@@ -17,15 +18,20 @@ class Testfile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ListTile(
-              title: Text("Message.".tr),
+              title: Text("Massage".tr),
               subtitle: Text("Name".tr),
             ),
             SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: (){}, child: Text("English")),
-                ElevatedButton(onPressed: (){}, child: Text("Urdu")),
+                ElevatedButton(onPressed: (){
+                  Get.updateLocale(Locale("en","US"));
+                }, child: Text("English")),
+                Gap(20),
+                ElevatedButton(onPressed: (){
+                  Get.updateLocale(Locale("ur","PK"));
+                }, child: Text("Urdu")),
               ]
             )
             // ElevatedButton(
