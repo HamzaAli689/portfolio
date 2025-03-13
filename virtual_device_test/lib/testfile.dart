@@ -16,11 +16,15 @@ class Testfile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-                onPressed: () {
-                  Get.to(() => ScreenOne());
-                },
-                child: Text("Go to Screen One")),
+            ListTile(
+              title: Text("Message.".tr),
+              subtitle: Text("Name".tr),
+            ),
+            // ElevatedButton(
+            //     onPressed: () {
+            //       Get.to(() => ScreenOne());
+            //     },
+            //     child: Text("Go to Screen One")),
           ],
         ),
       ),
