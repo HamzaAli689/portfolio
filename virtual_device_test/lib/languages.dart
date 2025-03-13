@@ -8,6 +8,10 @@ class Languages extends Translations{
       "Massage": "What is your name?",
       "Name": "Hamza Ali",
     },
+    "ur_PK": {
+      "Massage": "آپ کا نام کیا ہے؟",
+      "Name": "حمزہ علی",
+    },
 
 
   };
