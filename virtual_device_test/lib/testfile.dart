@@ -20,6 +20,14 @@ class Testfile extends StatelessWidget {
               title: Text("Message.".tr),
               subtitle: Text("Name".tr),
             ),
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: (){}, child: Text("English")),
+                ElevatedButton(onPressed: (){}, child: Text("Urdu")),
+              ]
+            )
             // ElevatedButton(
             //     onPressed: () {
             //       Get.to(() => ScreenOne());
