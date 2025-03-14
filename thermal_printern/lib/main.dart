@@ -1,95 +1,123 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:bluetooth_print/bluetooth_print.dart';
-import 'package:bluetooth_print/bluetooth_print_model.dart';
+import 'package:blue_thermal_printer/blue_thermal_printer.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Thermal Printer App',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomeScreen(),
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class _MyAppState extends State<MyApp> {
+  final BlueThermalPrinter printer = BlueThermalPrinter.instance;
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final BluetoothPrint bluetoothPrint = BluetoothPrint.instance;
   List<BluetoothDevice> devices = [];
   BluetoothDevice? selectedDevice;
 
   @override
   void initState() {
     super.initState();
-    _startScan();
+    _getDevices();
   }
 
-  void _startScan() async {
-    bluetoothPrint.startScan(timeout: const Duration(seconds: 4));
-
-    bluetoothPrint.scanResults.listen((result) {
-      setState(() => devices = result);
-    });
+  // Connected Devices Ko List Mein Lana
+  Future<void> _getDevices() async {
+    try {
+      final List<BluetoothDevice> result = await printer.getBondedDevices();
+      setState(() {
+        devices = result;
+        if (devices.isNotEmpty) {
+          selectedDevice = devices.first;
+        }
+      });
+    } catch (e) {
+      print("Error getting devices: $e");
+    }
   }
 
-  Future<void> _connectPrinter(BluetoothDevice device) async {
-    await bluetoothPrint.connect(device);
-    setState(() => selectedDevice = device);
+  // Arabic Text Encode Karne Ka Function
+  Uint8List encodeArabic(String text) {
+    List<int> encodedBytes = [];
+    for (var char in text.split('')) {
+      encodedBytes.add(char.codeUnitAt(0));
+    }
+    return Uint8List.fromList(encodedBytes);
   }
 
-  Future<void> _printArabicText() async {
-    if (selectedDevice == null) return;
+  // Arabic Text Ko Reverse Karne Ka Function
+  String reverseArabic(String text) {
+    return text.split('').reversed.join('');
+  }
 
-    Map<String, dynamic> config = {};
-    List<LineText> list = [];
+  // Print Function
+  Future<void> _printReceipt(String arabicText) async {
+    if (selectedDevice == null) {
+      print("No device selected");
+      return;
+    }
 
-    list.add(LineText(
-      type: LineText.TYPE_TEXT,
-      content: 'مرحبا بك في مطعمنا',
-      align: LineText.ALIGN_CENTER,
-      linefeed: 1,
-    ));
+    try {
+      bool isConnected = await printer.isConnected ?? false;
 
-    await bluetoothPrint.printReceipt(config, list);
+      if (!isConnected) {
+        await printer.connect(selectedDevice!);
+      }
+
+      String reversedText = reverseArabic(arabicText);
+
+      printer.printCustom('فاتورة الشراء', 3, 1); // Arabic Title
+      printer.printCustom('--------------------', 1, 1);
+      printer.printCustom(reversedText, 1, 1);     // Arabic text
+      printer.printNewLine();
+      printer.paperCut();
+
+      print("Printing Successful");
+    } catch (e) {
+      print("Printing Error: $e");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Thermal Printer App')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: devices.length,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text(devices[index].name ?? 'Unknown Device'),
-                  subtitle: Text(devices[index].address ?? ''),
-                  onTap: () => _connectPrinter(devices[index]),
-                ),
+    TextEditingController arabicTextController = TextEditingController();
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Thermal Printer Arabic Test')),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DropdownButton<BluetoothDevice>(
+                value: selectedDevice,
+                hint: Text('Select Printer'),
+                items: devices.map((device) {
+                  return DropdownMenuItem(
+                    value: device,
+                    child: Text(device.name ?? 'Unknown Device'),
+                  );
+                }).toList(),
+                onChanged: (device) {
+                  setState(() {
+                    selectedDevice = device;
+                  });
+                },
               ),
-            ),
-            ElevatedButton(
-              onPressed: _printArabicText,
-              child: const Text('Print Arabic Text'),
-            ),
-          ],
+              TextField(
+                controller: arabicTextController,
+                decoration: InputDecoration(labelText: 'Enter Arabic Text'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => _printReceipt(arabicTextController.text),
+                child: Text('Print Arabic Text'),
+              ),
+            ],
+          ),
         ),
       ),
     );
