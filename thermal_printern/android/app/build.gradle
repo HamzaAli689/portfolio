@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    namespace 'com.blue_thermal_printer' // Add this line
     namespace = "com.example.thermal_printern"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
