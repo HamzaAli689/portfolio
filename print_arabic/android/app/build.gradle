@@ -7,6 +7,7 @@ plugins {
 
 android {
     namespace = "com.print_arabic.App.print_arabic"
+    namespace "com.example.bluetooth_print"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
