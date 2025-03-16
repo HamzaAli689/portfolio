@@ -1,5 +1,3 @@
-
-
 import 'package:bluetooth_print/bluetooth_print.dart';
 import 'package:bluetooth_print/bluetooth_print_model.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +16,17 @@ class _PrintpageState extends State<Printpage> {
   List<BluetoothDevice> _devices = [];
   String deviesMsg = "";
   final f = NumberFormat("\$###,###.00", "en_US");
+
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_){});
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      initPrint(); // Add this line
+    });
   }
+
+
   Future<void> initPrint ()async {
     bluetoothPrint.startScan(timeout: Duration(seconds: 2));
 
@@ -48,7 +51,7 @@ class _PrintpageState extends State<Printpage> {
         title: Text("Select Printer"),
         backgroundColor: Colors.redAccent,
       ),
-      body: _devices.isEmpty ? Center(child: Text(deviesMsg ?? ""),):
+      body: _devices.isEmpty ? Center(child: Text(deviesMsg ?? "No device Found"),):
           ListView.builder(
             itemCount: _devices.length,
               itemBuilder: (context,index){
