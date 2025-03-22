@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:virtual_device_test/languages.dart';
 
-import 'counter_example/counter_example.dart';
+import 'container_example.dart';
+import 'counter_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  Homescreen(),
+      home:  containerExample(),
     );
   }
 }
