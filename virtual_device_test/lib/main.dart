@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:virtual_device_test/languages.dart';
 
-import 'homeScreen.dart';
+import 'counter_example/counter_example.dart';
 
 void main() {
   runApp(const MyApp());
