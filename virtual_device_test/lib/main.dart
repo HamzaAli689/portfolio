@@ -4,6 +4,7 @@ import 'package:virtual_device_test/languages.dart';
 
 import 'container_example.dart';
 import 'counter_example.dart';
+import 'favorit_app/faovratApp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  containerExample(),
+      home:  Faovratapp(),
     );
   }
 }
