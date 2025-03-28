@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,28 +23,28 @@ class _FaovratappState extends State<Faovratapp> {
         backgroundColor: Colors.indigoAccent,
       ),
       body: ListView.builder(
-        itemCount: logic.fruits.length,
-          itemBuilder: (context, i){
-        return Card(
-          elevation: 4,
-          child: ListTile(
-            onTap: (){
-              if(logic.favorit.contains(logic.fruits[i].toString())){
-                logic.favorit.remove(logic.fruits[i].toString());
-              }else{
-                logic.favorit.add(logic.fruits[i].toString());
-
-              }
-              setState(() {
-
-              });
-            },
-            title: Text(logic.fruits[i].toString()),
-            trailing: Icon(Icons.favorite,
-              color: logic.favorit.contains(logic.fruits[i].toString()) ? Colors.red :Colors.grey,),
-          ),
-        );
-      }),
+          itemCount: logic.fruits.length,
+          itemBuilder: (context, i) {
+            return Card(
+              elevation: 4,
+              child: ListTile(
+                onTap: () {
+                  if (logic.favorit.contains(logic.fruits[i].toString())) {
+                    logic.removeFavorit(logic.fruits[i].toString());
+                  } else {
+                    logic.addFavorit(logic.fruits[i].toString());
+                  }
+                },
+                title: Text(logic.fruits[i].toString()),
+                trailing: Obx(() {
+                  return Icon(Icons.favorite,
+                    color: logic.favorit.contains(logic.fruits[i].toString())
+                        ? Colors.red
+                        : Colors.grey,);
+                }),
+              ),
+            );
+          }),
     );
   }
 }
