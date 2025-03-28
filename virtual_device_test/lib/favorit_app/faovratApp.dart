@@ -10,19 +10,35 @@ class Faovratapp extends StatefulWidget {
 
 class _FaovratappState extends State<Faovratapp> {
   List<String> fruits = ["Apple", "Mango", "Banana", "Orange"];
+  List<String> favorit = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Favorit App Example"),
+        backgroundColor: Colors.indigoAccent,
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: fruits.length,
           itemBuilder: (context, i){
         return Card(
+          elevation: 4,
           child: ListTile(
-            title: Text("Item $i"),
+            onTap: (){
+              if(favorit.contains(fruits[i].toString())){
+                favorit.remove(fruits[i].toString());
+              }else{
+                favorit.add(fruits[i].toString());
+
+              }
+              setState(() {
+
+              });
+            },
+            title: Text(fruits[i].toString()),
+            trailing: Icon(Icons.favorite,
+              color: favorit.contains(fruits[i].toString()) ? Colors.red :Colors.grey,),
           ),
         );
       }),
