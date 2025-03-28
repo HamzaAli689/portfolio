@@ -9,6 +9,8 @@ class Faovratapp extends StatefulWidget {
 }
 
 class _FaovratappState extends State<Faovratapp> {
+  List<String> fruits = ["Apple", "Mango", "Banana", "Orange"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +20,10 @@ class _FaovratappState extends State<Faovratapp> {
       body: ListView.builder(
         itemCount: 10,
           itemBuilder: (context, i){
-        return ListTile(
-          title: Text("Item $i"),
+        return Card(
+          child: ListTile(
+            title: Text("Item $i"),
+          ),
         );
       }),
     );
