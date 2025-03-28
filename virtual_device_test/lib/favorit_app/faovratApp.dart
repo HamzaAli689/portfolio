@@ -1,5 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'faovratApp.controller.dart';
 
 class Faovratapp extends StatefulWidget {
   const Faovratapp({super.key});
@@ -9,8 +12,9 @@ class Faovratapp extends StatefulWidget {
 }
 
 class _FaovratappState extends State<Faovratapp> {
-  List<String> fruits = ["Apple", "Mango", "Banana", "Orange"];
-  List<String> favorit = [];
+
+  FaovratController logic = Get.put(FaovratController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,25 +24,25 @@ class _FaovratappState extends State<Faovratapp> {
         backgroundColor: Colors.indigoAccent,
       ),
       body: ListView.builder(
-        itemCount: fruits.length,
+        itemCount: logic.fruits.length,
           itemBuilder: (context, i){
         return Card(
           elevation: 4,
           child: ListTile(
             onTap: (){
-              if(favorit.contains(fruits[i].toString())){
-                favorit.remove(fruits[i].toString());
+              if(logic.favorit.contains(logic.fruits[i].toString())){
+                logic.favorit.remove(logic.fruits[i].toString());
               }else{
-                favorit.add(fruits[i].toString());
+                logic.favorit.add(logic.fruits[i].toString());
 
               }
               setState(() {
 
               });
             },
-            title: Text(fruits[i].toString()),
+            title: Text(logic.fruits[i].toString()),
             trailing: Icon(Icons.favorite,
-              color: favorit.contains(fruits[i].toString()) ? Colors.red :Colors.grey,),
+              color: logic.favorit.contains(logic.fruits[i].toString()) ? Colors.red :Colors.grey,),
           ),
         );
       }),
