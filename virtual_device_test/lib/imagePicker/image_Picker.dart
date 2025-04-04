@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
-class ImagePicker extends StatefulWidget {
-  const ImagePicker({super.key});
+class Imagepicker extends StatefulWidget {
+  const Imagepicker({super.key});
 
   @override
-  State<ImagePicker> createState() => _ImagePickerState();
+  State<Imagepicker> createState() => _ImagepickerState();
 }
 
-class _ImagePickerState extends State<ImagePicker> {
+class _ImagepickerState extends State<Imagepicker> {
   @override
   Widget build(BuildContext context) {
-    return  Placeholder();
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text("ImagePicker"),
+      ),
+      body: Column(
+        children: [
+          
+        ],
+      ),
+    );
   }
 }
